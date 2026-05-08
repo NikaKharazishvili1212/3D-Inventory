@@ -25,5 +25,8 @@ physics, and make different sounds depending on what they are.
 - Hover the chest to preview stored items as 2D icons
 - Items spawn randomly into the scene up to a set limit
 
+## License
+This repository is for viewing purposes only. All content, including third-party assets, may not be reused, copied, or redistributed without explicit permission.
+
 ## Watch the Demo on YouTube
 [![Watch the demo](https://img.youtube.com/vi/IAFXhhgRYnk/maxresdefault.jpg)](https://www.youtube.com/watch?v=IAFXhhgRYnk)
