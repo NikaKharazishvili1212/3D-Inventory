@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1733172626735828866}
   - component: {fileID: 5837439672866707423}
   - component: {fileID: 2430339842015772575}
+  - component: {fileID: 7762184771979364370}
   - component: {fileID: 8183682987015076179}
   - component: {fileID: 2364607427005853359}
   - component: {fileID: 6078796009363925370}
@@ -94,6 +95,28 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7762184771979364370
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666682506261981865}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 364bd116a8cd05e4ea17727667ef1225, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &8183682987015076179
 AudioSource:
   m_ObjectHideFlags: 0
@@ -253,8 +276,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: 6868abf122e4ead4982e599ac1d58e38, type: 2}
+  animator: {fileID: 7762184771979364370}
   audioSource: {fileID: 8183682987015076179}
   rb: {fileID: 2364607427005853359}
   collid: {fileID: 6078796009363925370}
   isInsideInventory: 0
   isInsideHand: 0
+  isRejected: 0

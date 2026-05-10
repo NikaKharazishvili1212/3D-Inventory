@@ -1,17 +1,16 @@
 using UnityEngine;
+using static GameConstants;
 
 /// <summary> Represents a physical item in the world — handles dragging, dropping, and inventory interaction. </summary>
 public class Item : MonoBehaviour
 {
-    static readonly int DropHash = Animator.StringToHash("Drop");
-
     GlobalReferences global;
     [field: SerializeField] public ScriptableItem ScriptableItem { get; private set; }
     [SerializeField] AudioSource audioSource;
     [SerializeField] Rigidbody rb;
     [SerializeField] Collider collid;
-    [SerializeField] bool isInsideInventory, isInsideHand; // Disables gravity when the item is inside the inventory or in hand
-    float cooldown; // Prevents dropping spam due to animation timing
+    [SerializeField] bool isInsideInventory, isInsideHand, isRejected; // Disables gravity when the item is inside the inventory or in hand
+    public static bool AnyItemInHand { get; private set; }
     float dragDistance; // Tracks distance between item and camera during drag
     Vector3 lastMousePosition;
 
@@ -19,13 +18,14 @@ public class Item : MonoBehaviour
 
     void Update()
     {
-        if (cooldown > 0) cooldown -= Time.deltaTime;
         if (!isInsideInventory && !isInsideHand) rb.AddForce(Vector3.down * ScriptableItem.weight, ForceMode.Acceleration);
         lastMousePosition = Input.mousePosition;
+
+        ThrowOnHotkey();
     }
 
     // Plays a sound when the item hits something with sufficient force
-    void OnCollisionEnter(Collision collision) { if (collision.relativeVelocity.magnitude > GameConstants.ItemCollisionSoundThreshold) audioSource.PlayOneShot(ScriptableItem.sound); }
+    void OnCollisionEnter(Collision collision) { if (collision.relativeVelocity.magnitude > ItemCollisionSoundThreshold) audioSource.PlayOneShot(ScriptableItem.sound); }
 
     // Adds the item to the chest when the held item is moved into it
     void OnTriggerEnter(Collider other)
@@ -34,9 +34,10 @@ public class Item : MonoBehaviour
         {
             if (!isInsideHand) return; // CancelDrag was called, item was rejected
 
-            if (GlobalReferences.Instance.inventory.UsedSlots >= GameConstants.TotalInventorySlots)
+            if (GlobalReferences.Instance.inventory.UsedSlots >= TotalInventorySlots)
             {
                 Utils.SendLogMessage("Your inventory is already full".Colored("red"));
+                isRejected = true;
                 ResetState();
                 return;
             }
@@ -49,7 +50,7 @@ public class Item : MonoBehaviour
     // Drag, rotate, and disable gravity for the item
     void OnMouseDrag()
     {
-        if (isInsideInventory) return;
+        if (isInsideInventory || isRejected) return;
 
         rb.isKinematic = true; // Stop item's move or rotation while we are dragging or rotating it
 
@@ -57,19 +58,20 @@ public class Item : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             Vector3 delta = Input.mousePosition - lastMousePosition;
-            transform.Rotate(global.cam.transform.up, -delta.x * GameConstants.ItemRotateSensitivity, Space.World);
-            transform.Rotate(global.cam.transform.right, delta.y * GameConstants.ItemRotateSensitivity, Space.World);
+            transform.Rotate(global.cam.transform.up, -delta.x * ItemRotateSensitivity, Space.World);
+            transform.Rotate(global.cam.transform.right, delta.y * ItemRotateSensitivity, Space.World);
             return;
         }
 
         // Otherwise, move the item normally
         if (!isInsideHand) dragDistance = Vector3.Distance(transform.position, global.cam.transform.position);
-        if (dragDistance > GameConstants.ItemMaxPickupDistance) return;
+        if (dragDistance > ItemMaxPickupDistance) return;
 
         isInsideHand = true;
-        dragDistance = Mathf.Clamp(dragDistance + Input.GetAxis("Mouse ScrollWheel") * GameConstants.ItemScrollSensitivity, GameConstants.ItemDistanceMin, GameConstants.ItemDistanceMax);
+        AnyItemInHand = true;
+        dragDistance = Mathf.Clamp(dragDistance + Input.GetAxis("Mouse ScrollWheel") * ItemScrollSensitivity, ItemDistanceMin, ItemDistanceMax);
         Vector3 point = global.cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, dragDistance));
-        point.y = Mathf.Max(point.y, GameConstants.ItemMinGroundY); // Prevent moving the item below the ground
+        point.y = Mathf.Max(point.y, ItemMinGroundY); // Prevent moving the item below the ground
         rb.MovePosition(point);
     }
 
@@ -77,7 +79,9 @@ public class Item : MonoBehaviour
     void OnMouseUp()
     {
         if (isInsideInventory) return;
+        AnyItemInHand = false;
         isInsideHand = false;
+        isRejected = false;
         rb.isKinematic = false;
     }
 
@@ -101,18 +105,21 @@ public class Item : MonoBehaviour
     // Drops the item from the inventory, called by Player on mouse release
     public void Drop()
     {
-        if (cooldown > 0) return; // Prevents spamming
-        cooldown = GameConstants.ItemDropCooldown;
-
         if (isInsideInventory)
         {
-            GetComponentInParent<Animator>().Play(DropHash);
             global.inventory.PlaySound(3);
-            this.Wait(GameConstants.ItemDropDelay, () =>
-            {
-                global.inventory.RemoveItem(this);
-                ResetState();
-            });
+            global.inventory.RemoveItem(this);
+            ResetState();
+        }
+    }
+
+    void ThrowOnHotkey()
+    {
+        if (isInsideHand && Input.GetKeyDown(KeyCode.G) && !global.inventory.IsChestOpen)
+        {
+            isRejected = true;
+            ResetState();
+            rb.AddForce(global.playerCamera.forward * ItemThrowStrength, ForceMode.Impulse);
         }
     }
 }

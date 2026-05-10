@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: 103
   <name>k__BackingField: Chicken
-  <weight>k__BackingField: 2.5
+  <weight>k__BackingField: 2
   <sound>k__BackingField: {fileID: 8300000, guid: ab63284461688ae42b3925a269302ad4, type: 3}
   <type>k__BackingField: 0

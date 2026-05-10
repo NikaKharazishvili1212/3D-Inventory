@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: 201
   <name>k__BackingField: Berserker Potion
-  <weight>k__BackingField: 2
+  <weight>k__BackingField: 1.5
   <sound>k__BackingField: {fileID: 8300000, guid: 6ffc3147562855e46819fd3df0105b9d, type: 3}
   <type>k__BackingField: 1

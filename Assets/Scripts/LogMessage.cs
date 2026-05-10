@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static GameConstants;
 
 public class LogMessage : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class LogMessage : MonoBehaviour
 
     public void Display(string text)
     {
-        lifespan = GameConstants.MessageLifespan;
+        lifespan = MessageLifespan;
         tmpro.text = text;
         tmpro.transform.SetAsLastSibling();
         gameObject.SetActive(true);
