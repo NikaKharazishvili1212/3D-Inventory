@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9854257592564398}
   - component: {fileID: 3837860692030711902}
   - component: {fileID: 3838465101426682528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Potion Mana
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: ebfd31c6bdcab614ebde0bad7d3d7a0a, type: 2}
-  animator: {fileID: 5664398722298766789}
   audioSource: {fileID: 5834641038286706968}
   rb: {fileID: 9854257592564398}
   collid: {fileID: 3837860692030711902}

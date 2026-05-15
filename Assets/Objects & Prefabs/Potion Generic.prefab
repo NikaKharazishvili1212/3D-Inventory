@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5244046756230905221}
   - component: {fileID: 1377962533229330637}
   - component: {fileID: 8543858857581751199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Potion Generic
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: f469dbc2cc7a0ab4e88f09d55ba7711a, type: 2}
-  animator: {fileID: 1077828722848404923}
   audioSource: {fileID: 2270613935318285146}
   rb: {fileID: 5244046756230905221}
   collid: {fileID: 1377962533229330637}

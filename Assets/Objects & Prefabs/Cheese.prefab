@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4868040570371673199}
   - component: {fileID: 6017282782151832081}
   - component: {fileID: 182514484299156798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cheese
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: 787f4496d876dea4d9c95775cdfdce8f, type: 2}
-  animator: {fileID: 5664655515991957479}
   audioSource: {fileID: 1459833238718494758}
   rb: {fileID: 4868040570371673199}
   collid: {fileID: 6017282782151832081}

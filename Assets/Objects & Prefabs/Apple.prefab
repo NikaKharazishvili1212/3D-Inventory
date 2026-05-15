@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4556830430183072572}
   - component: {fileID: 2818541268304325589}
   - component: {fileID: 9046930914533548661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Apple
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: 720858029d33c9e4f912b7d2266de8ea, type: 2}
-  animator: {fileID: 6078663362619612625}
   audioSource: {fileID: 3517425426866977126}
   rb: {fileID: 4556830430183072572}
   collid: {fileID: 2818541268304325589}

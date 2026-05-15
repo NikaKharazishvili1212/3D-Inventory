@@ -50,6 +50,7 @@ SpriteAtlas:
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - 457ea431916fb0c46999916d20946c7d: 21300000
     - 1fbcd413fab98c34ca1be07532805d22: 21300000
     - 08d7f553b974b23488660ef51bf1f126: 21300000
     - 12c652c344345074c9ddf31be5e66ba8: 21300000
@@ -59,6 +60,7 @@ SpriteAtlas:
     - f15a06f45efff1349ad634fc56ec5c77: 21300000
     - e57d12e67d2076f46b5cc46c9bd6d372: 21300000
     - ae9b0a378472e2a4991b72bde7130e89: 21300000
+    - ba4a63587d1038c45b10ec8a46269c8d: 21300000
     - e1594bc997dfa504dbe47dc7f744beef: 21300000
     - 4bd5132bda644704188c33450614f354: 21300000
     - 0cfcd1fb8b39f60439bba8f48c55deee: 21300000
@@ -66,6 +68,7 @@ SpriteAtlas:
     - 9328861daea1e7a46842132b2ae823f8: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 457ea431916fb0c46999916d20946c7d, type: 3}
   - {fileID: 21300000, guid: 1fbcd413fab98c34ca1be07532805d22, type: 3}
   - {fileID: 21300000, guid: 08d7f553b974b23488660ef51bf1f126, type: 3}
   - {fileID: 21300000, guid: 12c652c344345074c9ddf31be5e66ba8, type: 3}
@@ -75,12 +78,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f15a06f45efff1349ad634fc56ec5c77, type: 3}
   - {fileID: 21300000, guid: e57d12e67d2076f46b5cc46c9bd6d372, type: 3}
   - {fileID: 21300000, guid: ae9b0a378472e2a4991b72bde7130e89, type: 3}
+  - {fileID: 21300000, guid: ba4a63587d1038c45b10ec8a46269c8d, type: 3}
   - {fileID: 21300000, guid: e1594bc997dfa504dbe47dc7f744beef, type: 3}
   - {fileID: 21300000, guid: 4bd5132bda644704188c33450614f354, type: 3}
   - {fileID: 21300000, guid: 0cfcd1fb8b39f60439bba8f48c55deee, type: 3}
   - {fileID: 21300000, guid: 5012afbcec0d2384abef51a8e1f73cf2, type: 3}
   - {fileID: 21300000, guid: 9328861daea1e7a46842132b2ae823f8, type: 3}
   m_PackedSpriteNamesToIndex:
+  - CursorDot
   - Apple
   - Potion Mana
   - Dagger
@@ -90,6 +95,7 @@ SpriteAtlas:
   - Potion Health
   - Chicken
   - Steak
+  - CursorHand
   - Bomb
   - Sword
   - Cheese

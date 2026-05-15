@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip chestOpen, chestClose, itemPickup, itemDrop;
-    [SerializeField] GameObject tooltip;
+    [SerializeField] GameObject inventoryIcons;
     float weightCount;
     bool isOnCd;
 
@@ -134,21 +134,23 @@ public class Inventory : MonoBehaviour
     }
 
     // Shows or hides the canvas UI with icons for currently held items
-    public void ShowUI(bool trueOrFalse)
+    public void ShowUI(bool show)
     {
-        tooltip.SetActive(trueOrFalse);
-        if (trueOrFalse)
+        inventoryIcons.SetActive(show);
+        if (show) UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        foreach (Image x in icons) x.gameObject.SetActive(false);
+        for (int i = 0; i < slots.Length; i++)
         {
-            foreach (Image x in icons) x.gameObject.SetActive(false);
-            for (int i = 0; i < slots.Length; i++)
+            if (slots[i].childCount > 0)
             {
-                if (slots[i].childCount > 0)
-                {
-                    icons[i].gameObject.SetActive(true);
-                    icons[i].sprite = global.spriteAtlas.GetSprite(slots[i].GetChild(0).name.Replace("(Clone)", "").Trim());
-                }
-                else break;
+                icons[i].gameObject.SetActive(true);
+                icons[i].sprite = global.spriteAtlas.GetSprite(slots[i].GetChild(0).name.Replace("(Clone)", "").Trim());
             }
+            else break;
         }
     }
 }

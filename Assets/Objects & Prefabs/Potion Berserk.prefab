@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2364607427005853359}
   - component: {fileID: 6078796009363925370}
   - component: {fileID: 2768494671893062408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Potion Berserk
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: 6868abf122e4ead4982e599ac1d58e38, type: 2}
-  animator: {fileID: 7762184771979364370}
   audioSource: {fileID: 8183682987015076179}
   rb: {fileID: 2364607427005853359}
   collid: {fileID: 6078796009363925370}

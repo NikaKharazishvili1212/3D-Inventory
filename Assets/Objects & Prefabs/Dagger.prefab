@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7160269754464100791}
   - component: {fileID: 2429076781033151623}
   - component: {fileID: 8751707452030733007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Dagger
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: 5b8bba6c54a3bc343b0a5442a5b20cc3, type: 2}
-  animator: {fileID: 4608857617940728603}
   audioSource: {fileID: 2221035804929055875}
   rb: {fileID: 7160269754464100791}
   collid: {fileID: 2429076781033151623}

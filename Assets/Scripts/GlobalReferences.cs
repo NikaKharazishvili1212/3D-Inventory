@@ -7,8 +7,8 @@ public class GlobalReferences : MonoBehaviour
 {
     public static GlobalReferences Instance { get; private set; }
 
+    [field: SerializeField] public Player player { get; private set; }
     [field: SerializeField] public Camera cam { get; private set; }
-    [field: SerializeField] public Transform playerCamera { get; private set; }
     [field: SerializeField] public SpriteAtlas spriteAtlas { get; private set; }
     [field: SerializeField] public Inventory inventory { get; private set; }
     [field: SerializeField] public ItemSpawner itemSpawner { get; private set; }
