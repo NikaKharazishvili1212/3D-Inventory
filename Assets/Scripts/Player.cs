@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     float rotationX, rotationY, dragDistance;
     Vector3 flatForward, flatRight, moveDirection;
 
-
     void Awake()
     {
         global = GlobalReferences.Instance;
