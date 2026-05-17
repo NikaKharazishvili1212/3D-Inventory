@@ -34,7 +34,6 @@ public static class Utils
             }
         }
 
-
         var parent = logMessages[0].transform.parent;
         foreach (var logMessage in logMessages)
         {

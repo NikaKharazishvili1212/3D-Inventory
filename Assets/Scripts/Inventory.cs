@@ -24,16 +24,13 @@ public class Inventory : MonoBehaviour
     {
         global = GlobalReferences.Instance;
         UsedSlots = 0;
+        GridLayout3D();
     }
 
-    void Start() => GridLayout3D();
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I)) OpenOrCloseInventory();
-        if (Input.GetKeyDown(KeyCode.G) && IsChestOpen) DropAllItems();
-    }
+    // Plays a sound by index
+    void PlaySound(int index) => audioSource.PlayOneShot(index == 0 ? chestOpen : index == 1 ? chestClose : index == 2 ? itemPickup : itemDrop);
 
-    // Called when pressing a hotkey or clicking the 3D inventory
+    // Called by player on hotkey
     public void OpenOrCloseInventory()
     {
         if (isOnCd) return;
@@ -41,23 +38,8 @@ public class Inventory : MonoBehaviour
         this.Wait(1, () => isOnCd = false);
         IsChestOpen = !IsChestOpen;
         animator.SetBool(IsOpenHash, IsChestOpen);
-    }
-
-    // Plays a sound by index
-    public void PlaySound(int index) => audioSource.PlayOneShot(index == 0 ? chestOpen : index == 1 ? chestClose : index == 2 ? itemPickup : itemDrop);
-
-    // Positions slots in a 3D grid layout on start
-    void GridLayout3D()
-    {
-        Vector3 spacing = new Vector3(1.1f, -1.15f, 1); // Spacing between slots (X, Y, Z)
-        Vector3 offset = new Vector3(0, 0.8f, 0);
-        int columns = InventoryColumns;
-        for (int i = 0; i < slots.Length; i++)
-        {
-            int row = i / columns;
-            int column = i % columns;
-            slots[i].localPosition = offset + new Vector3(column * spacing.x, row * spacing.y, 0); // Assign position to each slot
-        }
+        Cursor.lockState = IsChestOpen ? CursorLockMode.Confined : CursorLockMode.Locked; // Unlock cursor moving, so fake cursor will follow it
+        if (!IsChestOpen) global.player.ResetCursorPosition();
     }
 
     // Adds item to the first available slot and updates UI
@@ -85,6 +67,7 @@ public class Inventory : MonoBehaviour
     // Removes item from inventory, drops it into the scene, and resorts slots
     public void RemoveItem(Item item)
     {
+        PlaySound(3);
         UsedSlots--;
         weightCount -= item.ScriptableItem.weight;
         itemCountText.text = Utils.FormatCounter(UsedSlots, TotalInventorySlots);
@@ -97,9 +80,9 @@ public class Inventory : MonoBehaviour
     }
 
     // Drops all items from inventory at once and updates UI
-    void DropAllItems()
+    public void DropAllItems()
     {
-        if (UsedSlots == 0) return;
+        if (UsedSlots == 0 || !IsChestOpen) return;
 
         foreach (Transform slot in slots)
         {
@@ -107,7 +90,7 @@ public class Inventory : MonoBehaviour
             Item item = slot.GetChild(0).GetComponent<Item>();
             item.transform.SetParent(global.itemSpawner.transform, false);
             item.transform.position = transform.position + Vector3.up + Vector3.forward;
-            item.ResetState();
+            item.SetState(isInsideHand: false, isInsideInventory: false, isKinematic: false);
         }
 
         UsedSlots = 0;
@@ -116,21 +99,6 @@ public class Inventory : MonoBehaviour
         weightCountText.text = weightCount.ToString();
         PlaySound(3);
         Utils.SendLogMessage("All items removed from inventory".Colored("red"));
-    }
-
-    // Shifts items forward to fill any empty slots
-    void SortSlots()
-    {
-        for (int i = 0; i < slots.Length - 1; i++)
-            if (slots[i].childCount == 0)
-                for (int j = i + 1; j < slots.Length; j++)
-                    if (slots[j].childCount > 0)
-                    {
-                        Transform child = slots[j].GetChild(0);
-                        child.SetParent(slots[i], false);
-                        child.localPosition = Vector3.zero;
-                        break;
-                    }
     }
 
     // Shows or hides the canvas UI with icons for currently held items
@@ -151,6 +119,35 @@ public class Inventory : MonoBehaviour
                 icons[i].sprite = global.spriteAtlas.GetSprite(slots[i].GetChild(0).name.Replace("(Clone)", "").Trim());
             }
             else break;
+        }
+    }
+
+    // Shifts items forward to fill any empty slots
+    void SortSlots()
+    {
+        for (int i = 0; i < slots.Length - 1; i++)
+            if (slots[i].childCount == 0)
+                for (int j = i + 1; j < slots.Length; j++)
+                    if (slots[j].childCount > 0)
+                    {
+                        Transform child = slots[j].GetChild(0);
+                        child.SetParent(slots[i], false);
+                        child.localPosition = Vector3.zero;
+                        break;
+                    }
+    }
+
+    // Positions slots in a 3D grid layout on start
+    void GridLayout3D()
+    {
+        Vector3 offset = new Vector3(0, 0.8f, 0);
+        Vector3 spacing = new Vector3(1.1f, -1.15f, 1); // Spacing between slots (X, Y, Z)
+        int columns = InventoryColumns;
+        for (int i = 0; i < slots.Length; i++)
+        {
+            int row = i / columns;
+            int column = i % columns;
+            slots[i].localPosition = offset + new Vector3(column * spacing.x, row * spacing.y, 0); // Assign position to each slot
         }
     }
 }

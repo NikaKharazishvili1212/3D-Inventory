@@ -9,21 +9,29 @@ fixed UI while keeping everything in 3D space. Items have weight, fall with
 physics, and make different sounds depending on what they are.
 
 ## Controls & Gameplay
-- WASD — move the player
-- Q / E — rotate the camera
-- Hold LMB + drag — pick up and move a physical item in the world
-- Mouse Scroll while dragging — push or pull the item closer or further
-- Hold LMB + RMB + move mouse — rotate a held item
-- Drag item and pull it into the chest — adds it to the inventory
-- I — open and close the inventory
-- G — drop all the items from inventory (while it's open)
-- LMB release over inventory item — drop the item back into the world
+WASD — move
+LMB drag — grab and move an item
+LMB drag + Mouse Scroll — push or pull the item closer or further
+LMB + RMB — rotate held item
+E — take item into inventory
+I — open/close chest
+U (hold) — preview inventory icons
+G — throw item / drop all from chest
+Click item in chest — drop it back into the world
 
 ## Inventory Features
 - Tracks total weight and item count against the slot limit
 - Empty slots automatically sort and fill when items are removed
-- Hover the chest to preview stored items as 2D icons
+- Hold U to preview stored items as 2D icons
 - Items spawn randomly into the scene up to a set limit
+- Fake cursor replaces the system cursor for a seamless 3D feel
+
+## Architecture Notes
+- All input is handled exclusively in `Player.cs`
+- `Item.cs` manages only its own physics state and inventory transitions
+- `Inventory.cs` manages slots, weight, UI, and chest animation
+- `GlobalReferences.cs` acts as a singleton hub — no cross-script Find calls anywhere
+- Magic numbers are centralized in `GameConstants.cs`
 
 ## License
 This repository is for viewing purposes only. All content, including third-party assets, may not be reused, copied, or redistributed without explicit permission.

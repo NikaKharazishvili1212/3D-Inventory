@@ -13,6 +13,7 @@ public static class GameConstants
     public const int MaxSpawnedItems = 20;
     public const float SpawnCDMin = 3;
     public const float SpawnCDMax = 6;
+    public const float CursorMoveSpeedInChest = 0.5f;
 
     // Item interaction
     public const float ItemMaxPickupDistance = 5;
@@ -21,9 +22,10 @@ public static class GameConstants
     public const float ItemDistanceMin = 1;
     public const float ItemDistanceMax = 4;
     public const float ItemCollisionSoundThreshold = 6;
-    public const float ItemRotateSensitivity = 1;
-    public const float ItemThrowStrength = 20;
+    public const float ItemRotationSensitivity = 5;
+    public const float ItemThrowStrength = 30;
 
     // Others
     public const float MessageLifespan = 15;
+    public static readonly UnityEngine.Vector3 CursorLocalZ = new UnityEngine.Vector3(0, 0, 0.31f);
 }

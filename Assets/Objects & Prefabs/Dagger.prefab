@@ -276,9 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ScriptableItem>k__BackingField: {fileID: 11400000, guid: 5b8bba6c54a3bc343b0a5442a5b20cc3, type: 2}
+  <rb>k__BackingField: {fileID: 7160269754464100791}
   audioSource: {fileID: 2221035804929055875}
-  rb: {fileID: 7160269754464100791}
   collid: {fileID: 2429076781033151623}
   isInsideInventory: 0
   isInsideHand: 0
-  isRejected: 0

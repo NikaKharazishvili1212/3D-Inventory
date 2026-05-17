@@ -8,6 +8,8 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] GameObject[] ItemPrefabs;
     [SerializeField] float spawnCD;
 
+    void Awake() => Utils.SendLogMessage("Items spawn every few seconds — drag them with LMB or pick them up with E".Colored("yellow"));
+
     void Update() => SpawnItem();
 
     // Spawns a random item at a random offset position above the spawner
