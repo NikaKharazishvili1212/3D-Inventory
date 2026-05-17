@@ -37,4 +37,4 @@ Click item in chest — drop it back into the world
 This repository is for viewing purposes only. All content, including third-party assets, may not be reused, copied, or redistributed without explicit permission.
 
 ## Watch the Demo on YouTube
-[![Watch the demo](https://img.youtube.com/vi/IAFXhhgRYnk/maxresdefault.jpg)](https://www.youtube.com/watch?v=IAFXhhgRYnk)
+[![Watch the demo](https://img.youtube.com/vi/LxWe07hQ6Qw/maxresdefault.jpg)](https://www.youtube.com/watch?v=LxWe07hQ6Qw)
