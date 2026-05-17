@@ -9,15 +9,15 @@ fixed UI while keeping everything in 3D space. Items have weight, fall with
 physics, and make different sounds depending on what they are.
 
 ## Controls & Gameplay
-WASD — move
-LMB drag — grab and move an item
-LMB drag + Mouse Scroll — push or pull the item closer or further
-LMB + RMB — rotate held item
-E — take item into inventory
-I — open/close chest
-U (hold) — preview inventory icons
-G — throw item / drop all from chest
-Click item in chest — drop it back into the world
+- WASD — move
+- LMB drag — grab and move an item
+- LMB drag + Mouse Scroll — push or pull the item closer or further
+- LMB + RMB — rotate held item
+- E — take item into inventory
+- I — open/close chest
+- U (hold) — preview inventory icons
+- G — throw item / drop all from chest
+- Click item in chest — drop it back into the world
 
 ## Inventory Features
 - Tracks total weight and item count against the slot limit
