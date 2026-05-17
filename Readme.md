@@ -39,4 +39,6 @@ This repository is for viewing purposes only. All content, including third-party
 ## Watch the Demo on YouTube
 [![Watch the demo](https://img.youtube.com/vi/LxWe07hQ6Qw/maxresdefault.jpg)](https://www.youtube.com/watch?v=LxWe07hQ6Qw)
 
-[Download on itch.io](https://nikson212.itch.io/3d-inventory)
+<div align="center">
+  <a href="https://nikson212.itch.io/3d-inventory">Download on itch.io</a>
+</div>
